@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 
 const Header = () => {
   return (
-    <div>
+    <div className="my-4">
       <div
         className=" flex flex-col space-y-3
 
