@@ -6,7 +6,7 @@ const NewsCard = ({ singleNews }) => {
     <div className="card my-4 card-compact bg-base-100 p-4 shadow-xl">
       <h2 className="card-title">{title}</h2>
       <figure>
-        <img src={thumbnail_url} alt="Shoes" />
+        <img className="" src={thumbnail_url} alt="Shoes" />
       </figure>
       <div className="card-body">
         {details.length > 200 ? (
