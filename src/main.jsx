@@ -9,6 +9,9 @@ import Home from "./Pages/Home/Home";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import PassForget from "./Components/PassForget/PassForget";
+import SeeMore from "./Components/SeeMore/SeeMore";
+import About from "./Components/About/About";
+import Career from "./Components/Career/Career";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,14 @@ const router = createBrowserRouter([
         loader: () => fetch("/data/categories.json"),
       },
       {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/career",
+        element: <Career></Career>,
+      },
+      {
         path: "/login",
         element: <Login></Login>,
       },
@@ -32,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/reset",
         element: <PassForget></PassForget>,
+      },
+      {
+        path: "/news/:id",
+        element: <SeeMore></SeeMore>,
       },
     ],
   },

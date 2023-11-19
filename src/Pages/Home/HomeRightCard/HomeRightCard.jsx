@@ -17,17 +17,8 @@ const HomeRightCard = () => {
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            Bayern Slams Authorities Over Flight Delay to Club World Cup
-          </h2>
-        </div>
-      </div>
-      <div className="card card-compact bg-base-100 shadow-xl">
-        <figure>
-          <img src="../../../public/3.png" alt="Shoes" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            Bayern Slams Authorities Over Flight Delay to Club World Cup
+            Good sit amet consectetur adipisicing elit. Similique quis obcaecati
+            quas
           </h2>
         </div>
       </div>
