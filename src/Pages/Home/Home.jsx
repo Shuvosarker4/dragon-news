@@ -8,7 +8,8 @@ import NewsCard from "../../Components/NewsCard/NewsCard";
 
 const Home = () => {
   const [allNews, setAllNews] = useState([]);
-  console.log(allNews);
+  const [show, setShow] = useState(false);
+  console.log(show);
   const newsCate = useLoaderData();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Home = () => {
       <Header></Header>
       <Navbar></Navbar>
       <div
-        className="grid grid-cols-4 gap-3 mt-6 
+        className="grid grid-cols-4 gap-3 my-2 
       "
       >
         <div>
@@ -37,9 +38,34 @@ const Home = () => {
           <h2>Dragon News Home</h2>
 
           <div>
-            {allNews?.map((singleNews) => (
-              <NewsCard key={singleNews._id} singleNews={singleNews}></NewsCard>
-            ))}
+            {show ? (
+              <>
+                {allNews?.map((singleNews) => (
+                  <NewsCard
+                    key={singleNews._id}
+                    singleNews={singleNews}
+                  ></NewsCard>
+                ))}
+              </>
+            ) : (
+              <>
+                {allNews?.slice(0, 2).map((singleNews) => (
+                  <NewsCard
+                    key={singleNews._id}
+                    singleNews={singleNews}
+                  ></NewsCard>
+                ))}
+              </>
+            )}
+
+            <div className="text-center">
+              <button
+                onClick={() => setShow(!show)}
+                className="btn btn-primary"
+              >
+                {show ? " Show Less" : "Show All"}
+              </button>
+            </div>
           </div>
         </div>
 
