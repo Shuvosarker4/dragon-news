@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Header from "../Header/Header";
 
 const Login = () => {
   return (
-    <div className="bg-[#F3F3F3] w-full rounded-lg">
+    <div className=" h-screen w-full rounded-lg">
+      <Header></Header>
       <Navbar></Navbar>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero bg-base-200">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>

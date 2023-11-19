@@ -1,10 +1,12 @@
+import Header from "../Header/Header";
 import Navbar from "../Navbar/Navbar";
 
 const PassForget = () => {
   return (
-    <div>
+    <div className="h-screen">
+      <Header></Header>
       <Navbar></Navbar>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Reset Your Password</h1>
