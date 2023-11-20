@@ -1,8 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Header from "../Header/Header";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
 
 const Register = () => {
+  const { createNewUser } = useContext(AuthContext);
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const photo = event.target.photoUrl.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    //create new user
+    createNewUser(email, password).then((result) => {
+      //send verification
+      sendEmailVerification(result.user).then(() => {
+        toast.success("Profile Successfully Created! Check Your Email");
+      });
+      //update profile
+      updateProfile(result.user, {
+        displayName: name,
+        photoURL: photo,
+      }).then(() => {});
+      console.log(result);
+      event.target.reset();
+    });
+  };
+
   return (
     <div className="h-screen">
       <Header></Header>
@@ -13,7 +42,7 @@ const Register = () => {
             <h1 className="text-5xl font-bold">Register now!</h1>
           </div>
           <div className="card mt-5 shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form onSubmit={handleRegister} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Your Name</span>
@@ -22,6 +51,7 @@ const Register = () => {
                   type="text"
                   placeholder="Your Name"
                   className="input input-bordered"
+                  name="name"
                   required
                 />
               </div>
@@ -33,6 +63,7 @@ const Register = () => {
                   type="text"
                   placeholder="https//:..."
                   className="input input-bordered"
+                  name="photoUrl"
                   required
                 />
               </div>
@@ -44,6 +75,7 @@ const Register = () => {
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
+                  name="email"
                   required
                 />
               </div>
@@ -55,6 +87,7 @@ const Register = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
+                  name="password"
                   required
                 />
               </div>

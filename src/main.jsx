@@ -12,6 +12,8 @@ import PassForget from "./Components/PassForget/PassForget";
 import SeeMore from "./Components/SeeMore/SeeMore";
 import About from "./Components/About/About";
 import Career from "./Components/Career/Career";
+import AuthProvider from "./Components/AuthProvider/AuthProvider";
+import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +48,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/news/:id",
-        element: <SeeMore></SeeMore>,
+        element: (
+          <PrivateRoute>
+            <SeeMore></SeeMore>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/data/news.json"),
       },
     ],
   },
@@ -54,6 +61,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

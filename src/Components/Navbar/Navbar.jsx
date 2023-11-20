@@ -1,7 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
-import user from "../../../public/user.png";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut().then(() => {
+      toast.success("Successfully LogOut!");
+    });
+  };
+
   const links = (
     <>
       <li>
@@ -47,9 +57,17 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <img className="w-[41px] h-[41px] mr-2" src={user} alt="" />
+        <img
+          className="w-[41px] h-[41px] mr-2"
+          src="../../../public/user.png"
+          alt=""
+        />
         <button className="btn btn-outline">
-          <Link to="/login">Log In</Link>
+          {user ? (
+            <Link onClick={handleLogout}>Log Out</Link>
+          ) : (
+            <Link to="/login">Log In</Link>
+          )}
         </button>
       </div>
     </div>
